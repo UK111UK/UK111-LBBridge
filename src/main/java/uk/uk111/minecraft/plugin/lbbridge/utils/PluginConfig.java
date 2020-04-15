@@ -26,6 +26,18 @@ public class PluginConfig {
         this.saveConfig();
     }
 
+    public void removeLootbox(String name) {
+        this.lootboxes.removeIf(lootbox -> lootbox.getName().equals(name));
+        this.saveConfig();
+    }
+
+    public void updateLootbox(String name, double price) {
+        Lootbox updatedLootbox = new Lootbox(name, price);
+        this.lootboxes.removeIf(lootbox -> lootbox.getName().equals(name));
+        this.lootboxes.add(updatedLootbox);
+        this.saveConfig();
+    }
+
     private void saveConfig() {
         try {
             Gson gson = new Gson();
