@@ -1,0 +1,9 @@
+name: UK111-LBBridge
+version: 1
+author: UK111UK
+main: uk.uk111.minecraft.plugin.lbbridge.LBBridge
+api-version: 1.15
+commands:
+  lb:
+    description: Displays available commands.
+    usage: /<command>
