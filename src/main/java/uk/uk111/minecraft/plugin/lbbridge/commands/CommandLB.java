@@ -14,17 +14,19 @@ public class CommandLB implements CommandExecutor {
 
         if (args.length == 0) {
             sendLBMessage(player, "Commands:\n" +
-                    "/lb add - Adds a lootbox\n" +
-                    "/lb buy - Buy a lootbox with in-game currency\n" +
+                    "/lb add [name] [price] - Adds a lootbox\n" +
+                    "/lb buy [name] - Buy a lootbox with in-game currency\n" +
                     "/lb list - List available lootboxes\n" +
-                    "/lb remove - Removes a lootbox\n" +
-                    "/lb update - Updates a lootbox\n");
+                    "/lb remove [name] - Removes a lootbox\n" +
+                    "/lb update [name] [price] - Updates a lootbox\n" +
+                    "/lb kits - List Kits\n" +
+                    "/lb kit [name] - Get a lootbox kit");
         } else {
             switch (args[0].toLowerCase()) {
                 case "add": {
                     if (player.isOp()) {
                         if (args.length != 3) {
-                            sendLBMessage(player, "Incorrect arguments! Usage: /lb add LOOTBOX_NAME PRICE");
+                            sendLBMessage(player, "Incorrect arguments! Usage: /lb add [name] [price]]");
                         } else {
                             sendLBMessage(player, LBAdd.addLootbox(args[1], Double.parseDouble(args[2])));
                         }
@@ -36,7 +38,7 @@ public class CommandLB implements CommandExecutor {
                 case "remove": {
                     if (player.isOp()) {
                         if (args.length != 2) {
-                            sendLBMessage(player, "Incorrect arguments! Usage: /lb remove LOOTBOX_NAME");
+                            sendLBMessage(player, "Incorrect arguments! Usage: /lb remove [name]");
                         } else {
                             sendLBMessage(player, LBRemove.removeLootbox(args[1]));
                         }
@@ -47,7 +49,7 @@ public class CommandLB implements CommandExecutor {
                 }
                 case "buy": {
                     if (args.length != 2) {
-                        sendLBMessage(player, "Incorrect arguments! Usage: /lb buy LOOTBOX_NAME");
+                        sendLBMessage(player, "Incorrect arguments! Usage: /lb buy [name]]");
                     } else {
                         sendLBMessage(player, LBBuy.buyLootbox(args[1], player));
                     }
@@ -56,7 +58,7 @@ public class CommandLB implements CommandExecutor {
                 case "update": {
                     if (player.isOp()) {
                         if (args.length != 3) {
-                            sendLBMessage(player, "Incorrect arguments! Usage: /lb update LOOTBOX_NAME PRICE");
+                            sendLBMessage(player, "Incorrect arguments! Usage: /lb update [name] [price]");
                         } else {
                             sendLBMessage(player, LBUpdate.updateLootbox(args[1], Double.parseDouble(args[2])));
                         }
@@ -67,6 +69,18 @@ public class CommandLB implements CommandExecutor {
                 }
                 case "list": {
                     sendLBMessage(player, LBList.listLootboxes());
+                    break;
+                }
+                case "kits": {
+                    sendLBMessage(player, LBKits.getLootboxList());
+                    break;
+                }
+                case "kit": {
+                    if (args.length != 2) {
+                        sendLBMessage(player, "Incorrect arguments! Usage: /lb kit [name]");
+                    } else {
+                        sendLBMessage(player, LBKit.getKit(player, args[1]));
+                    }
                     break;
                 }
                 default: {
