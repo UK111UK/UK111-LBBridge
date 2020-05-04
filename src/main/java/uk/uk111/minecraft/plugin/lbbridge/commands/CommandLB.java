@@ -48,10 +48,17 @@ public class CommandLB implements CommandExecutor {
                     break;
                 }
                 case "buy": {
-                    if (args.length != 2) {
-                        sendLBMessage(player, "Incorrect arguments! Usage: /lb buy [name]]");
-                    } else {
-                        sendLBMessage(player, LBBuy.buyLootbox(args[1], player));
+                    int amount = 1;
+                    if (args.length == 3)
+                    {
+                        amount = Integer.parseInt(args[2]);
+                    }
+                    if (args.length != 2 || args.length != 3)
+                    {
+                        sendLBMessage(player, "Incorrect arguments! Usage: /lb buy [name] [amount]");
+                    }
+                    else {
+                        sendLBMessage(player, LBBuy.buyLootbox(args[1], player, amount));
                     }
                     break;
                 }
