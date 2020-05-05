@@ -53,7 +53,7 @@ public class CommandLB implements CommandExecutor {
                     {
                         amount = Integer.parseInt(args[2]);
                     }
-                    if (args.length != 2 || args.length != 3)
+                    if (args.length != 2 && args.length != 3)
                     {
                         sendLBMessage(player, "Incorrect arguments! Usage: /lb buy [name] [amount]");
                     }
