@@ -13,7 +13,7 @@ public class LBBuy {
         if (LBBridge.getPluginConfig().getLootboxByName(name).isPresent()) {
             Lootbox lootbox = LBBridge.getPluginConfig().getLootboxByName(name).get();
             if (LBBridge.getEcononmy().getBalance(player) >= (lootbox.getPrice() * amount)) {
-                LBBridge.getEcononmy().withdrawPlayer(player, lootbox.getPrice());
+                LBBridge.getEcononmy().withdrawPlayer(player, lootbox.getPrice() * amount);
                 Bukkit.dispatchCommand(Bukkit.getServer().getConsoleSender(), String.format("elb give %s %s %d", player.getName(), name, amount));
                 returnMessage = String.format("You have purchased " + ChatColor.LIGHT_PURPLE + "%d x %s " +
                         ChatColor.WHITE + "for " +
